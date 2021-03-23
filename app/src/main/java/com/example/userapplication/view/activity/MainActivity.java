@@ -82,8 +82,7 @@ public class MainActivity extends AppCompatActivity implements UserListInfo {
 
                     if (isScrolling && (mCurrentItems + mScrolledOutItems == mTotalItems)) {
                         isScrolling = false;
-                        mPageNumber++;
-                        mViewModel.getUserList(mPageNumber, Constants.PAGE_SIZE_5);
+
 //                        mPageNumber++;
 
                      /*   Address address = null;
@@ -124,7 +123,11 @@ public class MainActivity extends AppCompatActivity implements UserListInfo {
                     }
 
                 } else {
-
+                    if (isScrolling && (mCurrentItems + mScrolledOutItems == mTotalItems)) {
+                        isScrolling = false;
+                        mPageNumber++;
+                        mViewModel.getUserList(mPageNumber, Constants.PAGE_SIZE_5);
+                    }
                 }
             }
         });
@@ -134,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements UserListInfo {
     private void initView() {
         mLayoutManager = (new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mBinding.rvUserList.setLayoutManager(mLayoutManager);
-        mAdapter = new UserListAdapter();
+        mAdapter = new UserListAdapter(this);
         mBinding.rvUserList.setAdapter(mAdapter);
         mUserListListener = this;
         mDatabase = AppDatabase.getInstance(this);
@@ -227,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements UserListInfo {
                         addUserList.setEmail(mUserList.get(i).getEmail());
                         addUserList.setPhone(mUserList.get(i).getPhone());
                         addUserList.setWebsite(mUserList.get(i).getWebsite());*//**//*
-                     *//**//*  try {
+                 *//**//*  try {
                             jsonObjectAddressResponse = new JSONObject(new Gson().toJson(mUserList.get(i).getAddress()));
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -8,9 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.userapplication.R;
 import com.example.userapplication.databinding.ItemUserLayoutBinding;
 import com.example.userapplication.model.UserData;
+import com.example.userapplication.view.activity.MainActivity;
 import com.example.userapplication.viewmodel.ItemUserViewModel;
 
 import java.util.List;
@@ -19,6 +21,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.Adapte
 
     Context mContext;
     private List<UserData> mUserList;
+
+    public UserListAdapter(Context context) {
+        this.mContext = context;
+    }
 
 
     @NonNull
@@ -32,6 +38,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.Adapte
     public void onBindViewHolder(@NonNull AdapterViewModel holder, int position) {
         holder.bind(mUserList.get(position));
         holder.setIsRecyclable(false);
+        Glide.with(mContext).load(mUserList.get(position).getAvatar()).placeholder(R.drawable.load).into(holder.mBinding.ivImage);
     }
 
     @Override
