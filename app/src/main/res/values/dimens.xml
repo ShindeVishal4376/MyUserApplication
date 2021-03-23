@@ -1,0 +1,65 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="margin_vsmall">2dp</dimen>
+    <dimen name="margin_4small">4dp</dimen>
+    <dimen name="margin_small">5dp</dimen>
+    <dimen name="margin_xsmall">6dp</dimen>
+    <dimen name="margin_xxsmall">7dp</dimen>
+    <dimen name="margin_vmedium">8dp</dimen>
+    <dimen name="margin_vvmedium">9dp</dimen>
+
+    <dimen name="margin_medium">10dp</dimen>
+    <dimen name="margin_11medium">11dp</dimen>
+    <dimen name="margin_xmedium">12dp</dimen>
+    <dimen name="margin_13medium">13dp</dimen>
+    <dimen name="margin_large">15dp</dimen>
+    <dimen name="margin_16large">16dp</dimen>
+
+    <dimen name="margin_18large">18dp</dimen>
+    <dimen name="margin_xlarge">20dp</dimen>
+    <dimen name="margin_21large">21dp</dimen>
+    <dimen name="margin_xmlarge">25dp</dimen>
+    <dimen name="margin_xxlarge">30dp</dimen>
+    <dimen name="margin_xxmlarge">40dp</dimen>
+    <dimen name="margin_xxxlarge">50dp</dimen>
+    <dimen name="margin_xxxxlarge">60dp</dimen>
+
+    <dimen name="padding_vsmall">2dp</dimen>
+    <dimen name="padding_vmsmall">3.5dp</dimen>
+    <dimen name="padding_small">5dp</dimen>
+    <dimen name="padding_xsmall">7dp</dimen>
+    <dimen name="padding_medium">10dp</dimen>
+    <dimen name="padding_large">15dp</dimen>
+    <dimen name="padding_16large">16dp</dimen>
+    <dimen name="padding_xlarge">20dp</dimen>
+    <dimen name="padding_xxlarge">30dp</dimen>
+    <dimen name="padding_xxslarge">35dp</dimen>
+    <dimen name="text_tiny">5sp</dimen>
+    <dimen name="text_vsmall">8sp</dimen>
+    <dimen name="text_small">10sp</dimen>
+    <dimen name="text_xsmall">11sp</dimen>
+    <dimen name="text_xxsmall">12sp</dimen>
+
+    <dimen name="text_medium">13sp</dimen>
+    <dimen name="text_xmedium">14sp</dimen>
+    <dimen name="text_large">16sp</dimen>
+    <dimen name="text_xlarge">18sp</dimen>
+
+    <dimen name="elevation_app_bar">4dp</dimen>
+    <dimen name="elevation_nav_drawer">16dp</dimen>
+    <dimen name="navigation_drawer_max_width">280dp</dimen>
+
+    <dimen name="nav_drawer_width">250dp</dimen>
+    <dimen name="text_xxlarge">20sp</dimen>
+    <dimen name="text_xxxlarge">25sp</dimen>
+    <dimen name="dp14">14</dimen>
+    <dimen name="dp1">10</dimen>
+    <dimen name="sp14">10</dimen>
+    <dimen name="sp16">16</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="list_item_spacing">16dp</dimen>
+    <dimen name="list_item_spacing_half">8dp</dimen>
+
+
+</resources>
