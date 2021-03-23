@@ -19,14 +19,14 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainViewModel extends ViewModel {
     public RemoteRepository mRepository = new RemoteRepository();
-    private Observable<List<JsonResponseDatum>> mUserListObservable;
-    public MutableLiveData<List<JsonResponseDatum>> mUserListData = new MutableLiveData<>();
+    private Observable<JsonResponseDatum> mUserListObservable;
+    public MutableLiveData<JsonResponseDatum> mUserListData = new MutableLiveData<>();
 
-    public void getUserList() {
-        mUserListObservable = Observable.defer(new Callable<Observable<List<JsonResponseDatum>>>() {
+    public void getUserList(int mPageNumber, int pageSize5) {
+        mUserListObservable = Observable.defer(new Callable<Observable<JsonResponseDatum>>() {
             @Override
-            public Observable<List<JsonResponseDatum>> call() throws Exception {
-                return mRepository.getUserList();
+            public Observable<JsonResponseDatum> call() throws Exception {
+                return mRepository.getUserList(mPageNumber,pageSize5);
             }
         });
 
@@ -35,14 +35,14 @@ public class MainViewModel extends ViewModel {
                 subscribe(mUserListObserver);
     }
 
-    Observer<List<JsonResponseDatum>> mUserListObserver = new Observer<List<JsonResponseDatum>>() {
+    Observer<JsonResponseDatum> mUserListObserver = new Observer<JsonResponseDatum>() {
         @Override
         public void onSubscribe(Disposable d) {
             Log.d("error", "suscripbe");
         }
 
         @Override
-        public void onNext(List<JsonResponseDatum> jsonResponseData) {
+        public void onNext(JsonResponseDatum jsonResponseData) {
             mUserListData.setValue(jsonResponseData);
         }
 
@@ -57,7 +57,7 @@ public class MainViewModel extends ViewModel {
         }
     };
 
-    public MutableLiveData<List<JsonResponseDatum>> getmUserListData() {
+    public MutableLiveData<JsonResponseDatum> getmUserListData() {
         return mUserListData;
     }
 }

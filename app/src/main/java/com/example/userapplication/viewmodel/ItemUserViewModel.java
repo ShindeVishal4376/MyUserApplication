@@ -5,55 +5,32 @@ import android.content.Context;
 import androidx.databinding.BaseObservable;
 
 import com.example.userapplication.model.JsonResponseDatum;
+import com.example.userapplication.model.UserData;
 
 public class ItemUserViewModel extends BaseObservable {
     private Context mContext;
-    private JsonResponseDatum mJsonResponseDatum;
+    private UserData mUserData;
 
-    public ItemUserViewModel(Context context, JsonResponseDatum jsonResponseDatum) {
+    public ItemUserViewModel(Context context, UserData userData) {
         this.mContext = context;
-        this.mJsonResponseDatum = jsonResponseDatum;
+        this.mUserData = userData;
     }
 
-    public void setUserData(JsonResponseDatum jsonResponseDatum) {
-        mJsonResponseDatum = jsonResponseDatum;
+    public void setUserData(UserData userData) {
+        mUserData = userData;
         notifyChange();
     }
 
 
     public String getName() {
-        return mJsonResponseDatum.getName();
+        return mUserData.getFirstName();
     }
 
-    public String getUserName() {
-        return mJsonResponseDatum.getUsername();
-    }
-
-    public String getPhone() {
-        return mJsonResponseDatum.getPhone();
+    public String getLastName() {
+        return mUserData.getLastName();
     }
 
     public String getEmail() {
-        return mJsonResponseDatum.getEmail();
-    }
-
-    public String getAddress() {
-        if (mJsonResponseDatum.getAddress() != null) {
-            return mJsonResponseDatum.getAddress().getStreet() + "," + mJsonResponseDatum.getAddress().getSuite() + "," + mJsonResponseDatum.getAddress().getCity() + "," + mJsonResponseDatum.getAddress().getZipcode();
-        } else {
-            return "";
-        }
-    }
-
-    public String getWebsite() {
-        return mJsonResponseDatum.getWebsite();
-    }
-
-    public String getCompany() {
-        if (mJsonResponseDatum.getCompany() != null) {
-            return mJsonResponseDatum.getCompany().getName();
-        } else {
-            return "";
-        }
+        return mUserData.getEmail();
     }
 }

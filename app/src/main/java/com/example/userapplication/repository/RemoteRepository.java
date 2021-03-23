@@ -12,7 +12,7 @@ public class RemoteRepository {
 
     public APIInterface mApiService = APIClient.getClient().create(APIInterface.class);
 
-    public Observable<List<JsonResponseDatum>> getUserList() {
-        return mApiService.getUserList();
+    public Observable<JsonResponseDatum> getUserList(int mPageNumber, int pageSize5) {
+        return mApiService.getUserList(mPageNumber,pageSize5);
     }
 }

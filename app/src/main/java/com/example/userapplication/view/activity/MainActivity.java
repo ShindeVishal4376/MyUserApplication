@@ -20,10 +20,10 @@ import com.example.userapplication.R;
 import com.example.userapplication.RoomDatabase.AppDatabase;
 import com.example.userapplication.RoomDatabase.entity.AddUserList;
 import com.example.userapplication.databinding.ActivityMainBinding;
-import com.example.userapplication.model.Address;
-import com.example.userapplication.model.Company;
 import com.example.userapplication.model.JsonResponseDatum;
 
+import com.example.userapplication.model.UserData;
+import com.example.userapplication.utility.Constants;
 import com.example.userapplication.utility.Utils;
 import com.example.userapplication.view.adapter.UserListAdapter;
 import com.example.userapplication.viewmodel.MainViewModel;
@@ -39,7 +39,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements UserListInfo {
     ActivityMainBinding mBinding;
     MainViewModel mViewModel;
-    List<JsonResponseDatum> mUserList = new ArrayList<>();
+    List<UserData> mUserList = new ArrayList<>();
     List<AddUserList> mLocalUserList = new ArrayList<>();
 
     private LinearLayoutManager mLayoutManager;
@@ -82,44 +82,48 @@ public class MainActivity extends AppCompatActivity implements UserListInfo {
 
                     if (isScrolling && (mCurrentItems + mScrolledOutItems == mTotalItems)) {
                         isScrolling = false;
+                        mPageNumber++;
+                        mViewModel.getUserList(mPageNumber, Constants.PAGE_SIZE_5);
 //                        mPageNumber++;
 
-                        Address address = null;
-                        Company company = null;
+                     /*   Address address = null;
+                        Company company = null;*/
 
-                        if (mUserListCount >= 0) {
+                       /* if (mUserListCount >= 0) {
                             mUserListCount -= 4;
                             mLocalUserList = mDatabase.addUserListDao().getAllAddUserList(mUserOffsetCount);
                             mUserOffsetCount += 4;
                             for (int i = 0; i < mLocalUserList.size(); i++) {
                                 JsonResponseDatum jsonResponseDatum = new JsonResponseDatum();
-                                jsonResponseDatum.setId(mLocalUserList.get(i).getUserid());
+                               *//* jsonResponseDatum.setId(mLocalUserList.get(i).getUserid());
                                 jsonResponseDatum.setName(mLocalUserList.get(i).getName());
                                 jsonResponseDatum.setUsername(mLocalUserList.get(i).getUsername());
                                 jsonResponseDatum.setEmail(mLocalUserList.get(i).getEmail());
                                 jsonResponseDatum.setPhone(mLocalUserList.get(i).getPhone());
-                                jsonResponseDatum.setWebsite(mLocalUserList.get(i).getWebsite());
+                                jsonResponseDatum.setWebsite(mLocalUserList.get(i).getWebsite());*//*
                                 try {
                                     JSONObject jsonObjectAddress = new JSONObject(mLocalUserList.get(i).getAddress());
                                     Gson gson = new Gson();
-                                    address = gson.fromJson(jsonObjectAddress.toString(), Address.class);
+                                //    address = gson.fromJson(jsonObjectAddress.toString(), Address.class);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                jsonResponseDatum.setAddress(address);
+                             //   jsonResponseDatum.setAddress(address);
                                 try {
                                     JSONObject jsonObjectCompany = new JSONObject(mLocalUserList.get(i).getCompany());
                                     Gson gson = new Gson();
-                                    company = gson.fromJson(jsonObjectCompany.toString(), Company.class);
+                                 //   company = gson.fromJson(jsonObjectCompany.toString(), Company.class);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                jsonResponseDatum.setCompany(company);
+                             //   jsonResponseDatum.setCompany(company);
                                 mUserList.add(jsonResponseDatum);
                                 mAdapter.setUserList(mUserList);
                             }
-                        }
+                        }*/
                     }
+
+                } else {
 
                 }
             }
@@ -144,43 +148,43 @@ public class MainActivity extends AppCompatActivity implements UserListInfo {
             public void onConnectivityChanged(int connectionType, boolean isConnected, boolean isFast) {
                 // TODO: Handle the connection...
                 if (isConnected) {
-                    mViewModel.getUserList();
-                    mUserListCount =0;
+                    mViewModel.getUserList(mPageNumber, Constants.PAGE_SIZE_5);
+                    mUserListCount = 0;
                     mUserOffsetCount = 0;
                 } else {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_internet_alert), Toast.LENGTH_LONG).show();
-                    Address address = null;
-                    Company company = null;
+                 /*   Address address = null;
+                    Company company = null;*/
                     mUserList.clear();
                     mUserListCount = mDatabase.addUserListDao().getAllAddUserListCount().size() - 4;
                     mUserOffsetCount = 4;
                     mLocalUserList = mDatabase.addUserListDao().getAllAddUserList(0);
                     for (int i = 0; i < mLocalUserList.size(); i++) {
                         JsonResponseDatum jsonResponseDatum = new JsonResponseDatum();
-                        jsonResponseDatum.setId(mLocalUserList.get(i).getUserid());
+                    /*    jsonResponseDatum.setId(mLocalUserList.get(i).getUserid());
                         jsonResponseDatum.setName(mLocalUserList.get(i).getName());
                         jsonResponseDatum.setUsername(mLocalUserList.get(i).getUsername());
                         jsonResponseDatum.setEmail(mLocalUserList.get(i).getEmail());
                         jsonResponseDatum.setPhone(mLocalUserList.get(i).getPhone());
-                        jsonResponseDatum.setWebsite(mLocalUserList.get(i).getWebsite());
+                        jsonResponseDatum.setWebsite(mLocalUserList.get(i).getWebsite());*/
                         try {
                             JSONObject jsonObjectAddress = new JSONObject(mLocalUserList.get(i).getAddress());
                             Gson gson = new Gson();
-                            address = gson.fromJson(jsonObjectAddress.toString(), Address.class);
+                            //    address = gson.fromJson(jsonObjectAddress.toString(), Address.class);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        jsonResponseDatum.setAddress(address);
+                        //jsonResponseDatum.setAddress(address);
                         try {
                             JSONObject jsonObjectCompany = new JSONObject(mLocalUserList.get(i).getCompany());
                             Gson gson = new Gson();
-                            company = gson.fromJson(jsonObjectCompany.toString(), Company.class);
+                            // company = gson.fromJson(jsonObjectCompany.toString(), Company.class);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        jsonResponseDatum.setCompany(company);
-                        mUserList.add(jsonResponseDatum);
-                        mAdapter.setUserList(mUserList);
+                        //  jsonResponseDatum.setCompany(company);
+                      /*  mUserList.add(jsonResponseDatum);
+                        mAdapter.setUserList(mUserList);*/
                     }
                 }
             }
@@ -194,39 +198,52 @@ public class MainActivity extends AppCompatActivity implements UserListInfo {
     }
 
     private void setObserver() {
-        mViewModel.getmUserListData().observe(this, new Observer<List<JsonResponseDatum>>() {
+        mViewModel.getmUserListData().observe(this, new Observer<JsonResponseDatum>() {
             @Override
-            public void onChanged(List<JsonResponseDatum> jsonResponseData) {
-                if (jsonResponseData.size() > 0) {
+            public void onChanged(JsonResponseDatum jsonResponseData) {
+
+                if (jsonResponseData.getData().size() > 0) {
+                    mUserList.clear();
+                    if (mPageNumber == 1) {
+                        //   mBinding.tvEmptyMsg.setVisibility(View.GONE);
+                        // mBinding.rvCategoryProductList.setVisibility(View.VISIBLE);
+                        mUserList.addAll(jsonResponseData.getData());
+                        mAdapter.setUserList(jsonResponseData.getData());
+                    } else {
+                        mUserList.addAll(jsonResponseData.getData());
+                        mAdapter.addAll(mUserList);
+                    }
+                }
+              /*  if (jsonResponseData.size() > 0) {
                     mUserList.clear();
                     mUserList.addAll(jsonResponseData);
                     mAdapter.setUserList(mUserList);
-                    mDatabase.addUserListDao().deleteByAll();
+                  *//*  mDatabase.addUserListDao().deleteByAll();
                     for (int i = 0; i < mUserList.size(); i++) {
                         AddUserList addUserList = new AddUserList();
-                        addUserList.setUserid(mUserList.get(i).getId());
+                      *//**//*  addUserList.setUserid(mUserList.get(i).getId());
                         addUserList.setName(mUserList.get(i).getName());
                         addUserList.setUsername(mUserList.get(i).getUsername());
                         addUserList.setEmail(mUserList.get(i).getEmail());
                         addUserList.setPhone(mUserList.get(i).getPhone());
-                        addUserList.setWebsite(mUserList.get(i).getWebsite());
-                        try {
+                        addUserList.setWebsite(mUserList.get(i).getWebsite());*//**//*
+                     *//**//*  try {
                             jsonObjectAddressResponse = new JSONObject(new Gson().toJson(mUserList.get(i).getAddress()));
                         } catch (JSONException e) {
                             e.printStackTrace();
-                        }
+                        }*//**//*
                         addUserList.setAddress(jsonObjectAddressResponse.toString());
-                        try {
+                       *//**//* try {
                             jsonObjectCompanyResponse = new JSONObject(new Gson().toJson(mUserList.get(i).getCompany()));
                         } catch (JSONException e) {
                             e.printStackTrace();
-                        }
+                        }*//**//*
                         addUserList.setCompany(jsonObjectCompanyResponse.toString());
                         mLocalUserList.add(addUserList);
                         mDatabase.addUserListDao().insertAddUserList(addUserList);
-                    }
+                    }*//*
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.internet_connected), Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
     }

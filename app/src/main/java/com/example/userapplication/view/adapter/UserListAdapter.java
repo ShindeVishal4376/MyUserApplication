@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.userapplication.R;
 import com.example.userapplication.databinding.ItemUserLayoutBinding;
-import com.example.userapplication.model.JsonResponseDatum;
+import com.example.userapplication.model.UserData;
 import com.example.userapplication.viewmodel.ItemUserViewModel;
 
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.AdapterViewModel> {
 
     Context mContext;
-    private List<JsonResponseDatum> mUserList;
+    private List<UserData> mUserList;
 
 
     @NonNull
@@ -49,9 +49,22 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.Adapte
         return position;
     }
 
-    public void setUserList(List<JsonResponseDatum> userList) {
+    public void setUserList(List<UserData> userList) {
         mUserList = userList;
         notifyDataSetChanged();
+    }
+
+    public void addAll(List<UserData> jsonList) {
+        for (UserData result : jsonList) {
+            add(result);
+        }
+    }
+
+    public void add(UserData r) {
+        if (mUserList.size() > 0) {
+            mUserList.add(r);
+            notifyItemInserted(mUserList.size() - 1);
+        }
     }
 
     public class AdapterViewModel extends RecyclerView.ViewHolder {
@@ -63,11 +76,11 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.Adapte
             this.mBinding = mBinding;
         }
 
-        public void bind(JsonResponseDatum jsonResponseDatum) {
+        public void bind(UserData UserData) {
             if (mBinding.getItemUserModel() == null) {
-                mBinding.setItemUserModel(new ItemUserViewModel(itemView.getContext(), jsonResponseDatum));
+                mBinding.setItemUserModel(new ItemUserViewModel(itemView.getContext(), UserData));
             } else {
-                mBinding.getItemUserModel().setUserData(jsonResponseDatum);
+                mBinding.getItemUserModel().setUserData(UserData);
             }
         }
     }

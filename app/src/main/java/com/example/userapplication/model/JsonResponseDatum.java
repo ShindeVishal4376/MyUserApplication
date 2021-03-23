@@ -3,95 +3,73 @@ package com.example.userapplication.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class JsonResponseDatum {
-
-    @SerializedName("id")
+    @SerializedName("page")
     @Expose
-    private Integer id;
-    @SerializedName("name")
+    private Integer page;
+    @SerializedName("per_page")
     @Expose
-    private String name;
-    @SerializedName("username")
+    private Integer perPage;
+    @SerializedName("total")
     @Expose
-    private String username;
-    @SerializedName("email")
+    private Integer total;
+    @SerializedName("total_pages")
     @Expose
-    private String email;
-    @SerializedName("address")
+    private Integer totalPages;
+    @SerializedName("data")
     @Expose
-    private Address address;
-    @SerializedName("phone")
+    private List<UserData> data = null;
+    @SerializedName("support")
     @Expose
-    private String phone;
-    @SerializedName("website")
-    @Expose
-    private String website;
-    @SerializedName("company")
-    @Expose
-    private Company company;
+    private Support support;
 
-    public Integer getId() {
-        return id;
+    public Integer getPage() {
+        return page;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
-    public String getName() {
-        return name;
+    public Integer getPerPage() {
+        return perPage;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPerPage(Integer perPage) {
+        this.perPage = perPage;
     }
 
-    public String getUsername() {
-        return username;
+    public Integer getTotal() {
+        return total;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setTotal(Integer total) {
+        this.total = total;
     }
 
-    public String getEmail() {
-        return email;
+    public Integer getTotalPages() {
+        return totalPages;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTotalPages(Integer totalPages) {
+        this.totalPages = totalPages;
     }
 
-    public Address getAddress() {
-        return address;
+    public List<UserData> getData() {
+        return data;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setData(List<UserData> data) {
+        this.data = data;
     }
 
-    public String getPhone() {
-        return phone;
+    public Support getSupport() {
+        return support;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setSupport(Support support) {
+        this.support = support;
     }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
 }
