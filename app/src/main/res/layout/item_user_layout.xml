@@ -13,19 +13,27 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/padding_small"
-        android:layout_marginRight="@dimen/padding_small"
-        android:layout_marginBottom="@dimen/padding_small"
+        android:layout_marginLeft="@dimen/padding_medium"
+        android:layout_marginRight="@dimen/padding_medium"
+        android:layout_marginBottom="@dimen/padding_medium"
         app:cardCornerRadius="@dimen/margin_medium"
         app:cardElevation="6dp">
 
 
         <RelativeLayout
+            android:id="@+id/rootLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="@dimen/padding_medium"
             android:paddingBottom="@dimen/padding_medium">
+
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:layout_height="200dp">
+
+            </ImageView>
 
             <TextView
                 android:id="@+id/name"
@@ -34,7 +42,9 @@
                 android:layout_marginLeft="@dimen/margin_medium"
                 android:fontFamily="@font/karla_bold"
                 android:text="@string/fname"
-                android:textColor="#505050"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_below="@+id/ivImage"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_large" />
 
             <TextView
@@ -43,10 +53,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_below="@+id/ivImage"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:layout_toEndOf="@+id/name"
                 android:fontFamily="@font/karla_regular"
                 android:text="@{itemUserModel.name}"
-                android:textColor="#505050"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_xlarge"
                 tool:text="Vishal Shinde" />
 
@@ -59,7 +71,7 @@
                 android:layout_marginTop="@dimen/margin_medium"
                 android:fontFamily="@font/karla_bold"
                 android:text="@string/lname"
-                android:textColor="#505050"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_large" />
 
             <TextView
@@ -73,7 +85,7 @@
                 android:layout_toEndOf="@+id/userName"
                 android:fontFamily="@font/karla_regular"
                 android:text="@{itemUserModel.lastName}"
-                android:textColor="#505050"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_xlarge"
                 tool:text="Vish" />
 
@@ -87,7 +99,7 @@
                 android:layout_marginTop="@dimen/margin_medium"
                 android:fontFamily="@font/karla_bold"
                 android:text="@string/email"
-                android:textColor="#505050"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_large" />
 
             <TextView
@@ -101,7 +113,7 @@
                 android:layout_toEndOf="@+id/email"
                 android:fontFamily="@font/karla_regular"
                 android:text="@{itemUserModel.email}"
-                android:textColor="#505050"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_xlarge"
                 tool:text="vishalshinde4376@gmail.com" />
         </RelativeLayout>

@@ -21,8 +21,10 @@ public class MainViewModel extends ViewModel {
     public RemoteRepository mRepository = new RemoteRepository();
     private Observable<JsonResponseDatum> mUserListObservable;
     public MutableLiveData<JsonResponseDatum> mUserListData = new MutableLiveData<>();
+    public MutableLiveData<Boolean> isProgressVisible = new MutableLiveData<>();
 
     public void getUserList(int mPageNumber, int pageSize5) {
+        isProgressVisible.setValue(true);
         mUserListObservable = Observable.defer(new Callable<Observable<JsonResponseDatum>>() {
             @Override
             public Observable<JsonResponseDatum> call() throws Exception {
@@ -44,11 +46,13 @@ public class MainViewModel extends ViewModel {
         @Override
         public void onNext(JsonResponseDatum jsonResponseData) {
             mUserListData.setValue(jsonResponseData);
+            isProgressVisible.setValue(false);
         }
 
         @Override
         public void onError(Throwable e) {
             Log.d("error", e.getMessage());
+            isProgressVisible.setValue(false);
         }
 
         @Override
@@ -59,5 +63,9 @@ public class MainViewModel extends ViewModel {
 
     public MutableLiveData<JsonResponseDatum> getmUserListData() {
         return mUserListData;
+    }
+
+    public MutableLiveData<Boolean> getIsProgressVisible() {
+        return isProgressVisible;
     }
 }

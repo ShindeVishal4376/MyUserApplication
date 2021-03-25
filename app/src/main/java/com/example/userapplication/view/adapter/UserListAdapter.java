@@ -1,6 +1,7 @@
 package com.example.userapplication.view.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -21,7 +22,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.Adapte
 
     Context mContext;
     private List<UserData> mUserList;
-
+    int bg;
     public UserListAdapter(Context context) {
         this.mContext = context;
     }
@@ -39,6 +40,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.Adapte
         holder.bind(mUserList.get(position));
         holder.setIsRecyclable(false);
         Glide.with(mContext).load(mUserList.get(position).getAvatar()).placeholder(R.drawable.load).into(holder.mBinding.ivImage);
+        bg = Color.rgb((int) Math.floor(Math.random() * 128) + 64,
+                (int) Math.floor(Math.random() * 128) + 64,
+                (int) Math.floor(Math.random() * 128) + 64);
+        holder.mBinding.rootLayout.setBackgroundColor(bg);
     }
 
     @Override

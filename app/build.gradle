@@ -56,7 +56,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
-
+    //swipe to refresh library
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    //Progressbar library
+    implementation 'com.victor:lib:1.0.4'
     def room_version = "2.2.5"
     implementation "android.arch.persistence.room:runtime:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"

@@ -12,8 +12,8 @@ import java.util.List;
 @Dao
 public interface AddUserListDao {
 
-    @Query("SELECT * FROM tbl_userList LIMIT 4 OFFSET :offset")
-    List<AddUserList> getAllAddUserList(int offset);
+    @Query("SELECT * FROM tbl_userList")
+    List<AddUserList> getAllAddUserList();
 
     @Query("SELECT * FROM tbl_userList ")
     List<AddUserList> getAllAddUserListCount();
